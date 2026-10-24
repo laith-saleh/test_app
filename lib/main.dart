@@ -137,6 +137,8 @@ class CenterScreen extends StatelessWidget {
                     icon: Icons.local_shipping_outlined,
                     label: 'Delivery',
                     badge: '3',
+                    badgeColor: Colors.red,
+                    
                     onTap: () {},
                   ),
                   QuickAction(
@@ -230,6 +232,7 @@ class QuickAction extends StatelessWidget {
   final IconData icon;
   final String label;
   final String? badge;
+  final Color? badgeColor;
   final VoidCallback onTap;
 
   const QuickAction({
@@ -238,6 +241,7 @@ class QuickAction extends StatelessWidget {
     required this.label,
     required this.onTap,
     this.badge,
+    this.badgeColor,
   });
 
   @override
@@ -267,8 +271,8 @@ class QuickAction extends StatelessWidget {
                     top: -3,
                     child: Container(
                       padding: const EdgeInsets.all(4),
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF3475FF),
+                      decoration: BoxDecoration(
+                        color: badgeColor ?? const Color(0xFF3475FF),
                         shape: BoxShape.circle,
                       ),
                       child: Text(
@@ -375,6 +379,17 @@ class SettingItem extends StatelessWidget {
             color: Color(0xFFC5C7CD),
             size: 23,
           ),
+          const SizedBox(width: 5), 
+          icon == Icons.notifications
+              ? Container(
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
     );
