@@ -12,10 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Center',
-      theme: ThemeData(
-     scaffoldBackgroundColor: Colors.white,
-      ),
       home: const CenterScreen(),
     );
   }
@@ -24,273 +20,150 @@ class MyApp extends StatelessWidget {
 class CenterScreen extends StatelessWidget {
   const CenterScreen({super.key});
 
-  static const Color primaryBlue = Color.fromARGB(255, 41, 91, 199);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF6F8FF),
+
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 17,
-            vertical: 18,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 2, bottom: 16),
-                child: Text(
-                  'Center',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            // Title
+            const Text(
+              'Center',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
+            ),
 
-              
-              Container(
-                padding: const EdgeInsets.fromLTRB(17, 17, 17, 16),
-                decoration: BoxDecoration(
-                  color: primaryBlue,
-                  borderRadius: BorderRadius.circular(19),
-                  boxShadow: [
-                    BoxShadow(
-                      color: primaryBlue.withOpacity(0.3),
-                      blurRadius: 12,
-                      offset: const Offset(0, 7),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('images/profile.jpg'),
-                            
-                            ),
-                        
-                        
-                        const SizedBox(width: 12),
-                        const Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Laith saleh',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                'salesman',
-                                style: TextStyle(
-                                  color: Color(0xFFDCE7FF),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                          size: 19,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 17),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        StatItem(number: '846', label: 'Collect'),
-                        StatItem(number: '51', label: 'Attention'),
-                        StatItem(number: '267', label: 'Track'),
-                        StatItem(number: '39', label: 'Coupons'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+            const SizedBox(height: 20),
 
-              const SizedBox(height: 26),
-
-              // Quick actions
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  QuickAction(
-                    icon: Icons.wallet,
-                    label: 'Wallet',
-                    onTap: () {},
-                  ),
-                  QuickAction(
-                    icon: Icons.local_shipping_outlined,
-                    label: 'Delivery',
-                    badge: '3',
-                    badgeColor: Colors.red,
-                    
-                    onTap: () {},
-                  ),
-                  QuickAction(
-                    icon: Icons.chat,
-                    label: 'Message',
-                    badge: '2',
-                    onTap: () {  },
-                    
-                  ),
-                  QuickAction(
-                    icon: Icons.star,
-                    label: 'Service',
-                    badge: '1',
-                    onTap: () {},
+            // Blue profile card
+            Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 41, 100, 209),
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color.fromARGB(255, 1, 20, 36).withValues(alpha: 0.2),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
                   ),
                 ],
               ),
-
-              const SizedBox(height: 30),
-
-              // Settings
-              const SettingItem(
-                icon: Icons.location_on,
-                color: Color.fromARGB(255, 89, 74, 150),
-                title: 'Adress',
-                subtitle: 'Ensure your harvesting address',
-              ),
-              const SettingItem(
-                icon: Icons.lock,
-                color: Color.fromARGB(255, 114, 34, 82),
-                title: 'Privacy',
-                subtitle: 'System permission change',
-              ),
-              const SettingItem(
-                icon: Icons.layers,
-                color: Color.fromARGB(255, 173, 123, 24),
-                title: 'General',
-                subtitle: 'Basic functional settings',
-              ),
-              const SettingItem(
-                icon: Icons.notifications,
-                color: Color.fromARGB(255, 8, 161, 163),
-                title: 'Notification',
-                subtitle: 'Take over the news in time',
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class StatItem extends StatelessWidget {
-  final String number;
-  final String label;
-
-  const StatItem({
-    super.key,
-    required this.number,
-    required this.label,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          number,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 3),
-        Text(
-          label,
-          style: const TextStyle(
-            color: Color(0xFFDCE7FF),
-            fontSize: 11,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class QuickAction extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String? badge;
-  final Color? badgeColor;
-  final VoidCallback onTap;
-
-  const QuickAction({
-    super.key,
-    required this.icon,
-    required this.label,
-    required this.onTap,
-    this.badge,
-    this.badgeColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(30),
-      child: SizedBox(
-        width: 68,
-        child: Column(
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                CircleAvatar(
-                  radius: 19,
-                  backgroundColor: const Color(0xFFF5F5F7),
-                  child: Icon(
-                    icon,
-                    color: const Color(0xFF252525),
-                    size: 21,
-                  ),
-                ),
-                if (badge != null)
-                  Positioned(
-                    right: -4,
-                    top: -3,
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: badgeColor ?? const Color(0xFF3475FF),
-                        shape: BoxShape.circle,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 26,
+                        backgroundColor: Colors.white,
+                        backgroundImage: const AssetImage('images/profile.jpg'),
                       ),
-                      child: Text(
-                        badge!,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 9,
-                          height: 1,
+                      const SizedBox(width: 10),
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Laith Saleh',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'A software engineer.',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 11,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                      const Icon(
+                        Icons.edit_outlined,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                    ],
                   ),
+
+                  const SizedBox(height: 18),
+
+                  const Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
+                    children: [
+                      ProfileStat('846', 'Collect'),
+                      ProfileStat('51', 'Attention'),
+                      ProfileStat('267', 'Track'),
+                      ProfileStat('39', 'Coupons'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 25),
+
+            // Quick actions
+            const Row(
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween,
+              children: [
+                QuickAction(Icons.wallet_outlined,
+                    'Wallet'),
+                QuickAction(Icons.local_shipping_outlined,
+                    'Delivery'),
+                QuickAction(Icons.message_outlined, 'Message' ),
+                QuickAction(Icons.build_outlined,
+                    'Service'),
               ],
             ),
-            const SizedBox(height: 8),
-            Text(
-              label,
-              style: const TextStyle(fontSize: 11),
+
+            const SizedBox(height: 30),
+
+            // Settings cards
+            const SettingsTile(
+              icon: Icons.location_on,
+              title: 'Address',
+              subtitle: 'Ensure your harvesting address',
+              color: Color.fromARGB(255, 76, 51, 145),
+            ),
+
+            const SizedBox(height: 12),
+
+            const SettingsTile(
+              icon: Icons.lock,
+              title: 'Privacy',
+              subtitle: 'System permission change',
+              color: Color.fromARGB(255, 112, 31, 80),
+            ),
+
+            const SizedBox(height: 12),
+
+            const SettingsTile(
+              icon: Icons.layers,
+              title: 'General',
+              subtitle: 'Basic functional settings',
+              color: Color.fromARGB(255, 88, 66, 25),
+            ),
+
+            const SizedBox(height: 12),
+
+            const SettingsTile(
+              icon: Icons.notifications,
+              title: 'Notification',
+              subtitle: 'Take over the news in time',
+              color: Color.fromARGB(255, 26, 103, 107),
             ),
           ],
         ),
@@ -299,97 +172,142 @@ class QuickAction extends StatelessWidget {
   }
 }
 
-class SettingItem extends StatelessWidget {
+// Profile statistics
+class ProfileStat extends StatelessWidget {
+  final String number;
+  final String title;
+
+  const ProfileStat(this.number, this.title, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          number,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white70,
+            fontSize: 10,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// Quick action widget
+class QuickAction extends StatelessWidget {
   final IconData icon;
-  final Color color;
+  final String title;
+
+  const QuickAction(this.icon, this.title, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 45,
+          height: 45,
+          decoration: const BoxDecoration(
+            color: Color(0xFFF0F1F5),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, size: 22),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 12),
+        ),
+      ],
+    );
+  }
+}
+
+// Settings list item
+class SettingsTile extends StatelessWidget {
+  final IconData icon;
   final String title;
   final String subtitle;
+  final Color color;
 
-  const SettingItem({
+  const SettingsTile({
     super.key,
     required this.icon,
-    required this.color,
     required this.title,
     required this.subtitle,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 18),
       padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 13,
+        horizontal: 12,
+        vertical: 14,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(17),
+        borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF4D77FF).withOpacity(0.17),
-            blurRadius: 22,
-            spreadRadius: 2,
-            offset: const Offset(0, 5),
+            color: Colors.blue.withValues(alpha: 0.06),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Row(
         children: [
-          Container(
-            width: 35,
-            height: 35,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
+          CircleAvatar(
+            radius: 20,
+            backgroundColor: color,
             child: Icon(
               icon,
               color: Colors.white,
               size: 21,
             ),
           ),
+
           const SizedBox(width: 12),
+
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment:
+                  CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 14,
                     fontWeight: FontWeight.bold,
+                    fontSize: 14,
                   ),
                 ),
-                const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    color: Color(0xFFBFC0C6),
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
+                    fontSize: 10,
                   ),
                 ),
               ],
             ),
           ),
+
           const Icon(
             Icons.chevron_right,
-            color: Color(0xFFC5C7CD),
-            size: 23,
+            color: Colors.grey,
           ),
-          const SizedBox(width: 5), 
-          icon == Icons.notifications
-              ? Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                )
-              : const SizedBox.shrink(),
         ],
       ),
     );
